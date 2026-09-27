@@ -18,7 +18,7 @@ Covered vector internals and STL usage by writing and testing `vectors.cpp`.
 - **Nested vectors**: `vector<vector<int>>` for 2D data, iterated with `const auto&` to avoid copies
 - Combined with `<algorithm>`: used `std::find` inside `.erase()` to remove by value
 
-Reference: `./vectors.cpp`
+Reference: [`vectors`](./vectors.cpp)
 
 ### Array (std::array)
 
@@ -35,4 +35,4 @@ Covered fixed-size array as an STL container, contrasted with std::vector.
 - **`.empty()`**: true only if N == 0 (a `array<T,0>` is legal but degenerate)
 - **Works with `<algorithm>`**: `std::sort(arr.begin(), arr.end())` — same iterator interface as vector
 
-Reference: `./arrays.cpp`
+Reference: [`arrays`](./arrays.cpp)
