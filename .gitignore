@@ -1,5 +1,6 @@
 arrays
 vectors
+deque
 
 # Compiled Object files
 *.o
