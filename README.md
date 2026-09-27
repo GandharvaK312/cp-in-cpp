@@ -36,3 +36,29 @@ Covered fixed-size array as an STL container, contrasted with std::vector.
 - **Works with `<algorithm>`**: `std::sort(arr.begin(), arr.end())` — same iterator interface as vector
 
 Reference: [`arrays`](./arrays.cpp)
+
+### Deque (std::deque)
+
+Covered double-ended queue, contrasted with vector's contiguous-array model.
+
+- **Underlying structure**: segmented/blocked array — multiple fixed-size memory
+  blocks, tracked by an internal map (array of pointers to blocks). Elements
+  within a block are contiguous; blocks themselves are NOT contiguous with
+  each other. Not a linked list — no per-element prev/next pointers.
+- **Why it exists over vector**: efficient insertion/removal at BOTH ends.
+  Growing a deque means allocating a new block and linking it into the map —
+  it never has to move existing elements (unlike vector, which must shift
+  everything to make room at the front). This is why `push_front` is
+  amortized O(1) on deque vs O(n) on vector.
+- **Complexity**:
+  - random access: O(1) (computed via index math across the block map)
+  - push_back / push_front: amortized O(1)
+  - pop_back / pop_front: O(1)
+  - erase/insert in the middle: O(n) — same as vector, worst case
+- **API mirrors vector closely**: `.push_back()`, `.push_front()`, `.pop_back()`,
+  `.pop_front()`, `.front()`, `.back()`, `.size()`, `.empty()`, `.clear()`,
+  `.erase()` combined with `std::find` — same patterns transfer directly
+- **Tradeoff vs vector**: worse cache locality (not one contiguous block),
+  but symmetric O(1) at both ends instead of just the back
+
+Reference: [`deque`](./deque.cpp)
